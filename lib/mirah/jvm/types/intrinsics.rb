@@ -301,11 +301,19 @@ module Mirah::JVM::Types
   class StringType < Type
     def add_intrinsics
       super
+      
+      add_method('include?', [String], Boolean) do |compiler, call, expression|
+        if expression
+          java_method('contains', CharSequence).call(compiler, call, expression)
+        end
+      end
+      
       add_method('+', [String], String) do |compiler, call, expression|
         if expression
           java_method('concat', String).call(compiler, call, expression)
         end
       end
+      
       add_method('+', [Boolean], String) do |compiler, call, expression|
         if expression
           call.target.compile(compiler, true)

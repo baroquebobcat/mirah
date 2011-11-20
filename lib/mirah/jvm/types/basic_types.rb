@@ -29,6 +29,8 @@ module Mirah::JVM::Types
   ClassType = Type.new(BiteScript::ASM::ClassMirror.load('java.lang.Class'))
   String = StringType.new(
       BiteScript::ASM::ClassMirror.load('java.lang.String'))
+  CharSequence = Type.new(
+      BiteScript::ASM::ClassMirror.load('java.lang.CharSequence'))
   Iterable = IterableType.new(
           BiteScript::ASM::ClassMirror.load('java.lang.Iterable'))
 
